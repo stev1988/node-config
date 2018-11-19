@@ -1,18 +1,19 @@
 #!/bin/sh
 
+#*/1 * * * *  /bin/bash /root/monitor-eos-proc/eos.sh >>/root/monitor-eos-proc/eos.log
 
 #while true
 #do
 #sleep 30
 
-cmd_getinfo=`/eos-1.2.5/eos/build/programs/cleos/cleos --wallet-url http://127.0.0.1:6667 --url http://172.31.25.126:8001 get info | grep head_block_num`
+cmd_getinfo=`/eos/eos/build/programs/cleos/cleos --wallet-url http://127.0.0.1:6667 --url http://172.18.85.228:8001 get info | grep head_block_num`
 #获取阿里云节点的块号
-cmd_getinfo2=`/eos-1.2.5/eos/build/programs/cleos/cleos --wallet-url http://127.0.0.1:6667 --url http://47.52.250.41:8001 get info | grep head_block_num`
-proc_name="172.31.25.126:8001"                                                # 进程名或端口号  
-file_name="/home/ubuntu/monitor-eos-proc/eos.log"                             # 日志文件  
+cmd_getinfo2=`/eos/eos/build/programs/cleos/cleos --wallet-url http://127.0.0.1:6667 --url http://47.52.250.41:8001 get info | grep head_block_num`
+proc_name="172.18.85.228:8001"                                                # 进程名或端口号  
+file_name="/root/monitor-eos-proc/eos.log"                             # 日志文件  
 pid=0  
 
-file_getinfo="/home/ubuntu/monitor-eos-proc/eos_getinfo"	#存放getinfo指令的head_block_num数据
+file_getinfo="/root/monitor-eos-proc/eos_getinfo"	#存放getinfo指令的head_block_num数据
 
 info1=""
 info2=""
@@ -111,7 +112,7 @@ echo proc number=$number
 if [ $number -eq 0 ]                                           # 判断进程是否存在  
 then  
     echo "启动命令" 
-    sh /home/ubuntu/monitor-eos-proc/start.sh>> $file_name    					       # 重启进程的命令，请相应修改  
+    sh /root/monitor-eos-proc/start.sh>> $file_name    					       # 重启进程的命令，请相应修改  
     proc_id   
     echo start ${pid}, `date` >> $file_name                          # 将新进程号和重启时间记录  
 fi 
