@@ -1,6 +1,13 @@
 #!/bin/sh
 
 #*/1 * * * *  /bin/bash /root/monitor-eos-proc/eos.sh >>/root/monitor-eos-proc/eos.log
+filename=~/monitor-eos-proc/backuping
+if [ -f $filename ]
+then
+echo $filename exist,备份中...
+exit 0
+fi
+
 
 #while true
 #do
