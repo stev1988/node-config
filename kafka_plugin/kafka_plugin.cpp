@@ -411,7 +411,7 @@ using kafka_producer_ptr = std::shared_ptr<class kafka_producer>;
         auto v = chain.to_variant_with_abi( trx, abi_serializer_max_time );
 
         trx_json += "\"trx\":" + fc::json::to_string( v ) + "}";
-        ilog("_process_accepted_transaction: ${q}", ("q", trx_json));
+//        ilog("_process_accepted_transaction: ${q}", ("q", trx_json));
 
         producer->trx_kafka_sendmsg(KAFKA_TRX_ACCEPT,(char*)trx_json.c_str());
 
